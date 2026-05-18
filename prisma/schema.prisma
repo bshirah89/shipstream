@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Switch provider to "postgresql" and update DATABASE_URL for production
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   // bcrypt hash — never store plaintext
+  createdAt DateTime @default(now())
+}
+
+// Each row is one shipboard event persisted for historical analysis
+model Event {
+  id        Int      @id @default(autoincrement())
+  type      String   // guest_checkin | excursion_booking | drink_purchase | ad_impression
+  payload   String   // JSON-serialized — SQLite has no native Json type; use JSON.parse/stringify at the boundary
+  createdAt DateTime @default(now())
+}
