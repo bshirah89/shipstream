@@ -17,6 +17,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.claude
 
 # SQLite dev database
 *.db
@@ -32,3 +33,4 @@ Thumbs.db
 # Editor
 .vscode/
 .idea/
+.claude/
