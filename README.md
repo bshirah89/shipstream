@@ -2,6 +2,8 @@
 
 Real-time shipboard operations dashboard demonstrating JWT auth, Server-Sent Events, and AI integration with Claude.
 
+## 🚀 Live Demo: https://your-vercel-url.vercel.app
+
 ## Tech Stack
 
 | Layer | Technology | Why |
