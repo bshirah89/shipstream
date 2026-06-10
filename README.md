@@ -124,10 +124,3 @@ shipstream/
 ├── prisma/schema.prisma            # User + Event models
 └── types/index.ts                  # Shared TypeScript interfaces
 ```
-
-## Interview talking points
-
-- **Why not sessions?** JWTs are stateless — the server verifies the signature without a DB lookup, which scales horizontally. Trade-off: you can't invalidate a token before expiry without a denylist (which reintroduces statefulness).
-- **How does SSE handle reconnects?** The browser's `EventSource` API automatically reconnects with exponential backoff. The server sends `id:` fields so clients can resume from where they left off using `Last-Event-ID`.
-- **How would you scale the SSE endpoint?** Each open SSE connection holds a Node.js stream. Horizontal scaling requires a message broker (Redis pub/sub) to fan out events to all server instances.
-- **Why streaming for Claude?** P50 latency for a Claude response is ~2-3s. Streaming makes users perceive it as ~200ms to first token. The UI feels dramatically faster even though total latency is identical.
